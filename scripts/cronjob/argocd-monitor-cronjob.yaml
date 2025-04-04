@@ -19,6 +19,7 @@ spec:
           labels:
             app.kubernetes.io/name: argocd-monitor
         spec:
+          priorityClassName: high-priority  # Añadir la clase de prioridad
           serviceAccountName: default
           containers:
           - name: argocd-monitor
@@ -35,10 +36,10 @@ spec:
                   name: argocd-token-secret
                   key: token  # Usa un secreto para mayor seguridad
             resources:
-              requests:
-                memory: "128Mi"
+              requests: # Reducido de 128Mi a 64Mi
+                memory: "128Mi"     # Reducido de 250m a 100m
                 cpu: "250m"
-              limits:
-                memory: "256Mi"
+              limits: # Reducido de 256Mi a 128Mi
+                memory: "256Mi"     # Reducido de 500m a 200m
                 cpu: "500m"
           restartPolicy: OnFailure
