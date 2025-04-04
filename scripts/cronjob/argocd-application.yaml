@@ -18,3 +18,4 @@ spec:
       selfHeal: true  # Permite corregir recursos modificados manualmente
     syncOptions:
       - CreateNamespace=true  # Crea el namespace si no existe
+      - ApplyOutOfSyncOnly=true  # Solo aplica cambios en recursos fuera de sincronización
