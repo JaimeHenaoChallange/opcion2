@@ -1,8 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role  # Cambiado de ClusterRole a Role
+kind: Role
 metadata:
   name: argocd-monitor-role
-  namespace: poc  # Limitado al namespace poc
+  namespace: poc
 rules:
 - apiGroups: [""]  # Recursos del API core
   resources: ["pods", "services", "configmaps"]

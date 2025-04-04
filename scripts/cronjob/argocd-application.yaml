@@ -4,11 +4,11 @@ metadata:
   name: argocd-monitor
   namespace: argocd
 spec:
-  project: kubeops  # Asegúrate de que el proyecto permite ClusterRole y ClusterRoleBinding
+  project: kubeops
   source:
     repoURL: https://github.com/JaimeHenaoChallange/opcion2.git
     targetRevision: HEAD
-    path: scripts/cronjob
+    path: scripts/cronjob  # Asegúrate de que esta ruta no incluya duplicados
   destination:
     server: https://kubernetes.default.svc
     namespace: poc
