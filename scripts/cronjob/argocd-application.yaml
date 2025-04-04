@@ -4,7 +4,7 @@ metadata:
   name: argocd-monitor
   namespace: argocd
 spec:
-  project: kubeops
+  project: kubeops  # Asegúrate de que este proyecto permita el namespace poc y los recursos necesarios
   source:
     repoURL: https://github.com/JaimeHenaoChallange/opcion2.git
     targetRevision: HEAD

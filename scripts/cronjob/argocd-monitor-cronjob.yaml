@@ -10,8 +10,8 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=true
 spec:
   schedule: "*/2 * * * *"
-  successfulJobsHistoryLimit: 0  # Eliminar jobs exitosos automáticamente
-  failedJobsHistoryLimit: 0      # Eliminar jobs fallidos automáticamente
+  successfulJobsHistoryLimit: 1  # Mantén solo 1 job exitoso para depuración
+  failedJobsHistoryLimit: 1      # Mantén solo 1 job fallido para depuración
   jobTemplate:
     spec:
       template:
@@ -30,7 +30,10 @@ spec:
             - name: SLACK_WEBHOOK_URL
               value: "https://hooks.slack.com/services/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"
             - name: ARGOCD_TOKEN
-              value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+              valueFrom:
+                secretKeyRef:
+                  name: argocd-token-secret
+                  key: token  # Usa un secreto para mayor seguridad
             resources:
               requests:
                 memory: "128Mi"

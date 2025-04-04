@@ -2,12 +2,7 @@ version: "3.8"
 services:
   argocd-monitor:
     build: .
-    network_mode: host  # Usa la red del host
-    dns:
-      - 8.8.8.8  # DNS de Google
-      - 8.8.4.4
-    environment:
-      - ARGOCD_API=http://localhost:8080/api/v1  # Asegúrate de incluir http://
-      - ARGOCD_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJhZG1pbjphcGlLZXkiLCJuYmYiOjE3NDM3MTcwMjUsImlhdCI6MTc0MzcxNzAyNSwianRpIjoiMDBjZjVhYzktYmRjMy00ZTE5LWE4NzEtMWNiOTUwODRiMDUwIn0.ZgZIsd-ktq1UJ-9IumqLNgXe_JFDKagyECyU91JGBd4
-      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+    network_mode: host
+    env_file:
+      - .env  # Cargar variables desde un archivo .env
     restart: always
