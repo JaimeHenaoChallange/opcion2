@@ -6,7 +6,7 @@ metadata:
 spec:
   project: kubeops  # Cambiado al proyecto kubeops
   source:
-    repoURL: https://github.com/jaimehenao8126/monitor-2  # Reemplaza con tu repositorio
+    repoURL: https://github.com/JaimeHenaoChallange/opcion2.git  # Asegúrate de que esta URL sea correcta
     targetRevision: HEAD  # Rama a rastrear (por ejemplo, main o master)
     path: scripts/cronjob  # Ruta dentro del repositorio donde está el manifiesto
   destination:
