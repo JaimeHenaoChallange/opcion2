@@ -4,7 +4,7 @@ metadata:
   name: argocd-monitor
   namespace: argocd
 spec:
-  project: default  # Cambiado de kubeops a default
+  project: default  # Asegúrate de que el proyecto permite ClusterRole y ClusterRoleBinding
   source:
     repoURL: https://github.com/JaimeHenaoChallange/opcion2.git
     targetRevision: HEAD
