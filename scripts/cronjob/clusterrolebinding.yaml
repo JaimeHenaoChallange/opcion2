@@ -8,6 +8,6 @@ subjects:
   name: default
   namespace: poc
 roleRef:
-  kind: Role
+  kind: Role  # Asegúrate de que coincida con el recurso Role
   name: argocd-monitor-role
   apiGroup: rbac.authorization.k8s.io

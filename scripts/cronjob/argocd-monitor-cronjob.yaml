@@ -36,10 +36,10 @@ spec:
                   name: argocd-token-secret
                   key: token  # Usa un secreto para mayor seguridad
             resources:
-              requests: # Reducido de 128Mi a 64Mi
-                memory: "128Mi"     # Reducido de 250m a 100m
-                cpu: "250m"
-              limits: # Reducido de 256Mi a 128Mi
-                memory: "256Mi"     # Reducido de 500m a 200m
-                cpu: "500m"
+              requests:
+                memory: "64Mi"  # Ajustado para evitar problemas de recursos
+                cpu: "100m"
+              limits:
+                memory: "128Mi"
+                cpu: "200m"
           restartPolicy: OnFailure
