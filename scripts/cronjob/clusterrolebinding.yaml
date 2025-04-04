@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: poc  # Cambiado a poc
+  namespace: poc
 roleRef:
   kind: ClusterRole
   name: argocd-monitor-clusterrole

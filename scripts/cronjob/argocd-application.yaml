@@ -4,14 +4,14 @@ metadata:
   name: argocd-monitor
   namespace: argocd
 spec:
-  project: kubeops  # Cambiado al proyecto kubeops
+  project: default  # Cambiado de kubeops a default
   source:
     repoURL: https://github.com/JaimeHenaoChallange/opcion2.git
     targetRevision: HEAD
     path: scripts/cronjob
   destination:
     server: https://kubernetes.default.svc
-    namespace: poc  # Cambiado a poc
+    namespace: poc
   syncPolicy:
     automated:
       prune: true
