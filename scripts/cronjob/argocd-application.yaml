@@ -2,20 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd-monitor
-  namespace: argocd  # Cambia al namespace donde está instalado ArgoCD
+  namespace: argocd
 spec:
   project: kubeops  # Cambiado al proyecto kubeops
   source:
-    repoURL: https://github.com/JaimeHenaoChallange/opcion2.git  # Asegúrate de que esta URL sea correcta
-    targetRevision: HEAD  # Rama a rastrear (por ejemplo, main o master)
-    path: scripts/cronjob  # Ruta dentro del repositorio donde está el manifiesto
+    repoURL: https://github.com/JaimeHenaoChallange/opcion2.git
+    targetRevision: HEAD
+    path: scripts/cronjob
   destination:
-    server: https://kubernetes.default.svc  # URL del clúster
-    namespace: kubeops  # Cambiado a kubeops
+    server: https://kubernetes.default.svc
+    namespace: poc  # Cambiado a poc
   syncPolicy:
     automated:
-      prune: true  # Permite eliminar recursos obsoletos
-      selfHeal: true  # Permite corregir recursos modificados manualmente
+      prune: true
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true  # Crea el namespace si no existe
-      - ApplyOutOfSyncOnly=true  # Solo aplica cambios en recursos fuera de sincronización
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

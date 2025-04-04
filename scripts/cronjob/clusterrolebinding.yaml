@@ -4,9 +4,9 @@ metadata:
   name: argocd-monitor-clusterrolebinding
 subjects:
 - kind: ServiceAccount
-  name: default  # ServiceAccount del CronJob
-  namespace: kubeops  # Cambiado a kubeops
+  name: default
+  namespace: poc  # Cambiado a poc
 roleRef:
   kind: ClusterRole
-  name: argocd-monitor-clusterrole  # ClusterRole que otorga acceso
+  name: argocd-monitor-clusterrole
   apiGroup: rbac.authorization.k8s.io
