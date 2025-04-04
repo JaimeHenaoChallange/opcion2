@@ -30,14 +30,14 @@ spec:
             imagePullPolicy: Always
             env:
             - name: ARGOCD_API
-              value: "https://localhost:8080/api/v1"
+              value: "https://localhost:8080/api/v1"  # Asegúrate de que esta URL sea válida
             - name: SLACK_WEBHOOK_URL
-              value: "https://hooks.slack.com/services/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"
+              value: "https://hooks.slack.com/services/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"  # Verifica el webhook
             - name: ARGOCD_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: argocd-token-secret
-                  key: token
+                  name: argocd-token-secret  # Asegúrate de que coincida con el nombre del secreto
+                  key: token                 # Asegúrate de que coincida con la clave del secreto
             resources:
               requests:
                 memory: "32Mi"  # Reducido de 64Mi a 32Mi
