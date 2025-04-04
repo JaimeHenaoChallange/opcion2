@@ -30,7 +30,7 @@ spec:
             imagePullPolicy: Always
             env:
             - name: ARGOCD_API
-              value: "https://localhost:8080/api/v1"  # Asegúrate de que esta URL sea válida
+              value: "https://argocd-server.argocd.svc.cluster.local:443"  # Cambia localhost por la dirección del servicio
             - name: SLACK_WEBHOOK_URL
               value: "https://hooks.slack.com/services/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"  # Verifica el webhook
             - name: ARGOCD_TOKEN
