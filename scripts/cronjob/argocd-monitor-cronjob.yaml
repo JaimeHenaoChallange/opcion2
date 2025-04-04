@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: argocd-monitor
+  namespace: kubeops  # Cambiado a kubeops
+  labels:
+    app.kubernetes.io/name: argocd-monitor
+    app.kubernetes.io/managed-by: argocd  # Indica que ArgoCD gestiona este recurso
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true  # Permite que ArgoCD elimine recursos obsoletos
+spec:
+  schedule: "*/2 * * * *"  # Ejecutar cada 2 minutos
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: argocd-monitor
+        spec:
+          serviceAccountName: default  # ServiceAccount que usará el CronJob
+          containers:
+          - name: argocd-monitor
+            image: jaimehenao8126/script_local-argocd-monitor:latest  # Reemplaza con tu imagen en Docker Hub
+            imagePullPolicy: Always  # Asegúrate de obtener la última versión de la imagen
+            env:
+            - name: ARGOCD_API
+              value: "https://localhost:8080/api/v1"  # Cambia según tu configuración
+            - name: SLACK_WEBHOOK_URL
+              value: "https://hooks.slack.com/services/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"
+            - name: ARGOCD_TOKEN
+              value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJhZG1pbjphcGlLZXkiLCJuYmYiOjE3NDM3MTcwMjUsImlhdCI6MTc0MzcxNzAyNSwianRpIjoiMDBjZjVhYzktYmRjMy00ZTE5LWE4NzEtMWNiOTUwODRiMDUwIn0.ZgZIsd-ktq1UJ-9IumqLNgXe_JFDKagyECyU91JGBd4"
+            resources:
+              requests:
+                memory: "128Mi"
+                cpu: "250m"
+              limits:
+                memory: "256Mi"
+                cpu: "500m"
+          restartPolicy: OnFailure  # Reinicia el contenedor solo si falla

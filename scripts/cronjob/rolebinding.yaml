@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-monitor-access
+  namespace: kubeops  # Cambiado a kubeops
+subjects:
+- kind: ServiceAccount
+  name: default  # ServiceAccount del CronJob
+  namespace: kubeops  # Cambiado a kubeops
+roleRef:
+  kind: Role
+  name: argocd-monitor-role  # Role que otorga acceso
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-monitor-role
+  namespace: kubeops  # Cambiado a kubeops
+rules:
+- apiGroups: [""]  # Recursos del API core
+  resources: ["pods", "services", "configmaps"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["argoproj.io"]  # Recursos de ArgoCD
+  resources: ["applications"]
+  verbs: ["get", "list", "watch"]

@@ -1,0 +1,62 @@
+{
+  "name": "k8s-argocd-monitor-2",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "k8s-argocd-monitor-2",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "enabled": true,
+      "kubectlVersion": "latest",
+      "kubectlAliases": true,
+      "kumaVersion": "latest",
+      "kumactlVersion": "latest",
+      "helmVersion": "latest",
+      "helmAliases": true,
+      "kumactlAliases": true,
+      "kumaAliases": true,
+      "kubeadmVersion": "latest",
+      "kubeadmAliases": true,
+      "kindVersion": "latest",
+      "kindAliases": true,
+      "k9sVersion": "latest",
+      "k9sAliases": true,
+      "kubeShellVersion": "latest",
+      "kubeShellAliases": true,
+      "kubeletVersion": "latest",
+      "kubeletAliases": true,
+      "dockerComposeVersion": "latest",
+      "dockerComposeAliases": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "dockerComposeVersion": "1.29.2",
+      "dockerComposeAliases": true,
+      "dockerComposeCompletion": true,
+      "dockerComposeBashCompletion": true,
+      "dockerComposeZshCompletion": true,
+      "dockerComposeFishCompletion": true,
+      "dockerComposePowershellCompletion": true
+    },
+    "ghcr.io/eliises/devcontainer-features/bash-profile:1.0.1": {
+      "bashProfileAliases": true,
+      "bashProfileVersion": "latest"
+    }
+  },
+  "forwardPorts": [
+    3000, 3001, 3002, 3003,
+    7007, 8080, 8081, 8082, 8083
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-ossdata.vscode-postgresql",
+        "ms-vscode.cpptools",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "echo 'Contenedor listo!' && sudo service docker start || echo 'Docker ya está corriendo'",
+  "postStopCommand": "minikube stop || true"
+}

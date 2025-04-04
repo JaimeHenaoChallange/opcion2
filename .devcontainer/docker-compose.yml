@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  k8s-argocd-monitor-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+      - minikube_data:/home/jaime/.minikube
+      - ssh_data:/home/jaime/.ssh
+      - argocd_data:/home/jaime/.argocd
+    command: sleep infinity
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=monitordb
+      - POSTGRES_USER=monitor_user
+      - POSTGRES_PASSWORD=monitor_password
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=monitordb
+      - POSTGRES_USER=monitor_user
+      - POSTGRES_PASSWORD=monitor_password
+    ports:
+      - "5432:5432"
+
+volumes:
+  minikube_data:
+    driver: local
+  ssh_data:
+    driver: local
+  argocd_data:
+    driver: local
+  postgres_data:
+    driver: local

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-monitor
+  namespace: argocd  # Cambia al namespace donde está instalado ArgoCD
+spec:
+  project: kubeops  # Cambiado al proyecto kubeops
+  source:
+    repoURL: https://github.com/jaimehenao8126/monitor-2  # Reemplaza con tu repositorio
+    targetRevision: HEAD  # Rama a rastrear (por ejemplo, main o master)
+    path: scripts/cronjob  # Ruta dentro del repositorio donde está el manifiesto
+  destination:
+    server: https://kubernetes.default.svc  # URL del clúster
+    namespace: kubeops  # Cambiado a kubeops
+  syncPolicy:
+    automated:
+      prune: true  # Permite eliminar recursos obsoletos
+      selfHeal: true  # Permite corregir recursos modificados manualmente
+    syncOptions:
+      - CreateNamespace=true  # Crea el namespace si no existe
