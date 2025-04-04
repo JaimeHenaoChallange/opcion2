@@ -10,6 +10,8 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=true
 spec:
   schedule: "*/2 * * * *"
+  successfulJobsHistoryLimit: 0  # Eliminar jobs exitosos automáticamente
+  failedJobsHistoryLimit: 0      # Eliminar jobs fallidos automáticamente
   jobTemplate:
     spec:
       template:
