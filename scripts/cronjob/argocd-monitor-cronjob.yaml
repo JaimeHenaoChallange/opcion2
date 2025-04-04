@@ -1,3 +1,6 @@
+# This file defines the CronJob resource for the ArgoCD Monitor.
+# The CronJob periodically monitors ArgoCD applications and sends notifications.
+
 apiVersion: batch/v1
 kind: CronJob
 metadata:

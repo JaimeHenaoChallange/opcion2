@@ -1,3 +1,6 @@
+# This file defines the Docker Compose configuration for running the ArgoCD Monitor locally.
+# It uses environment variables from a `.env` file for configuration.
+
 version: "3.8"
 services:
   argocd-monitor:

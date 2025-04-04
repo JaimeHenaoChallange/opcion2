@@ -1,3 +1,6 @@
+# This file defines the ArgoCD Application resource for managing the ArgoCD Monitor CronJob.
+# It ensures the CronJob is synchronized and managed by ArgoCD.
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
