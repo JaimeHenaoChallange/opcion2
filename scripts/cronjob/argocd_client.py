@@ -1,7 +1,7 @@
 import requests
 
 # Define the ArgoCD API endpoint and headers
-ARGOCD_API = "https://argocd-server.argocd.svc.cluster.local:443"
+ARGOCD_API = "https://192.168.49.2:30759"  # Actualizado con la IP y puerto de Minikube
 ARGOCD_APPLICATIONS_ENDPOINT = "/api/v1/applications"
 
 def fetch_applications(token):
