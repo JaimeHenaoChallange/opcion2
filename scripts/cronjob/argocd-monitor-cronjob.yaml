@@ -33,7 +33,7 @@ spec:
             imagePullPolicy: Always
             env:
             - name: ARGOCD_API
-              value: "https://192.168.49.2:30759/api/v1/applications"  # Incluye el endpoint completo
+              value: "https://192.168.49.2:30759"  # Solo la URL base del API
             - name: ARGOCD_TOKEN
               valueFrom:
                 secretKeyRef:
