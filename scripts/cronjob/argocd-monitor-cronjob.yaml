@@ -13,13 +13,13 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=true
 spec:
   schedule: "*/2 * * * *"
-  successfulJobsHistoryLimit: 1  # Mantén solo 1 job exitoso
-  failedJobsHistoryLimit: 1      # Mantén solo 1 job fallido
-  concurrencyPolicy: Forbid       # Evita que se ejecuten múltiples jobs en paralelo
-  startingDeadlineSeconds: 60     # Tiempo máximo para iniciar un job antes de descartarlo
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 60
   jobTemplate:
     spec:
-      backoffLimit: 2             # Reintenta un máximo de 2 veces antes de fallar
+      backoffLimit: 2
       template:
         metadata:
           labels:
@@ -29,11 +29,11 @@ spec:
           serviceAccountName: default
           containers:
           - name: argocd-monitor
-            image: jaimehenao8126/script_local-argocd-monitor:latest  # Imagen que contiene el script
+            image: jaimehenao8126/script_local-argocd-monitor:latest
             imagePullPolicy: Always
             env:
             - name: ARGOCD_API
-              value: "https://argocd-server.argocd.svc.cluster.local:443"  # Usar el DNS interno del servicio
+              value: "https://argocd-server.argocd.svc.cluster.local:443" # DNS interno
             - name: ARGOCD_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -43,9 +43,9 @@ spec:
               value: "https://hooks.slack.com/services/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"
             resources:
               requests:
-                memory: "32Mi"  # Reducido de 64Mi a 32Mi
-                cpu: "50m"      # Reducido de 100m a 50m
+                memory: "64Mi"
+                cpu: "100m"
               limits:
-                memory: "64Mi"  # Reducido de 128Mi a 64Mi
-                cpu: "100m"     # Reducido de 200m a 100m
+                memory: "128Mi"
+                cpu: "200m"
           restartPolicy: OnFailure

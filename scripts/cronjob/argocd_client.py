@@ -11,11 +11,11 @@ def fetch_applications(token):
     }
     try:
         # Realiza una solicitud GET al endpoint de aplicaciones
-        response = requests.get(f"{ARGOCD_API}{ARGOCD_APPLICATIONS_ENDPOINT}", headers=headers, verify=False)
+        response = requests.get(f"{ARGOCD_API}{ARGOCD_APPLICATIONS_ENDPOINT}", headers=headers, verify=False, timeout=10)
         response.raise_for_status()  # Lanza una excepción si la respuesta tiene un código de error HTTP
         return response.json()  # Devuelve la respuesta en formato JSON
-    except requests.exceptions.HTTPError as http_err:
-        print(f"❌ HTTP error occurred: {http_err}")
-    except Exception as err:
-        print(f"❌ Other error occurred: {err}")
+    except requests.exceptions.Timeout:
+        print("❌ Timeout: No se pudo conectar al API de ArgoCD.")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error de conexión: {e}")
     return None
