@@ -33,7 +33,7 @@ spec:
             imagePullPolicy: Always
             env:
             - name: ARGOCD_API
-              value: "https://192.168.49.2:30759"  # Solo la URL base del API
+              value: "https://argocd-server.argocd.svc.cluster.local:443"  # Usar el DNS interno del servicio
             - name: ARGOCD_TOKEN
               valueFrom:
                 secretKeyRef:

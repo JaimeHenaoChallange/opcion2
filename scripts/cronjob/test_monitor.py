@@ -3,6 +3,8 @@ from argocd_client import fetch_applications  # Importa la función desde argocd
 # Define el token de ArgoCD
 ARGOCD_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJhZG1pbjphcGlLZXkiLCJuYmYiOjE3NDM4MTYyMjEsImlhdCI6MTc0MzgxNjIyMSwianRpIjoiMjk1Y2NjNTItOTNhMS00ZDRjLWEzZmMtMGU2YjUxYmEyYjJjIn0.sI19G2ixaP9u9yAr0HupxeZC-ALGAWwVLnfp7eDorfU"  # Reemplaza con el nuevo token
 
+ARGOCD_API = "https://localhost:8080"  # Usar localhost con port-forward
+
 def monitor_applications():
     """Monitor the health and sync status of ArgoCD applications."""
     # Llama a la función fetch_applications para obtener la lista de aplicaciones
