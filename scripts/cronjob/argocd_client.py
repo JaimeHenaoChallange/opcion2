@@ -1,8 +1,8 @@
 import requests
 
 # Define the ArgoCD API endpoint and headers
-ARGOCD_API = "https://argocd-server.argocd.svc.cluster.local:443"  # Usar el DNS interno del servicio
-ARGOCD_APPLICATIONS_ENDPOINT = "/api/v1/applications"  # Endpoint correcto
+ARGOCD_API = "https://argocd-server.argocd.svc.cluster.local:443/api/v1"  # Agregar el prefijo /api/v1
+ARGOCD_APPLICATIONS_ENDPOINT = "/applications"  # Endpoint correcto
 
 def fetch_applications(token):
     """Fetch the list of applications from the ArgoCD API."""
